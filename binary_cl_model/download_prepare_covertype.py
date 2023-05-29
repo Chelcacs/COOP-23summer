@@ -22,25 +22,17 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 import wget
 
-URL = 'https://archive.ics.uci.edu/ml/machine-learning-databases/covtype/covtype.data.gz'
 
 
 def main():
-
+  
   if not os.path.exists('./data'):
     os.makedirs('./data')
 
-  filename = wget.download(URL)
-  with gzip.open(filename, 'rb') as f_in:
-    with open('data/covtype.csv', 'wb') as f_out:
-      shutil.copyfileobj(f_in, f_out)
-
-  df = pd.read_csv('data/covtype.csv')
+  df = pd.read_csv('../data_preprocess/standardized_data.csv')
   n_total = len(df)
 
   # Train, val and test split follows
-  # Rory Mitchell, Andrey Adinets, Thejaswi Rao, and Eibe Frank.
-  # Xgboost: Scalable GPU accelerated learning. arXiv:1806.11248, 2018.
 
   train_val_indices, test_indices = train_test_split(
       range(n_total), test_size=0.2, random_state=0)
