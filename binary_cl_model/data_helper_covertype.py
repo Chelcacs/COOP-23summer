@@ -27,18 +27,18 @@ NUM_CLASSES = 2
 # All feature columns in the data
 LABEL_COLUMN = "target"
 
-BOOL_COLUMNS = ["sex", "fasting blood sugar","exercise angina"
+BOOL_COLUMNS = ["sex", "fasting_blood_sugar","exercise_angina"
 ]
 
 INT_COLUMNS = [
-    "age", "chest pain type", "resting bp s", "cholesterol", 
-    "resting ecg", "max heart rate", "oldpeak", "ST slope"
+    "age"
 ]
 
 STR_COLUMNS = []
 STR_NUNIQUESS = []
 
-FLOAT_COLUMNS = []
+FLOAT_COLUMNS = ["chest_pain_type", "resting_bp_s", "cholesterol", 
+    "resting_ecg", "max_heart_rate", "oldpeak", "ST_slope"]
 
 DEFAULTS = ([[0] for col in INT_COLUMNS] + [[""] for col in BOOL_COLUMNS] +
             [[0.0] for col in FLOAT_COLUMNS] + [[""] for col in STR_COLUMNS] +

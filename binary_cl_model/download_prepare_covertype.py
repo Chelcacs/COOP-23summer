@@ -20,7 +20,7 @@ import os
 import shutil
 import pandas as pd
 from sklearn.model_selection import train_test_split
-import wget
+# import wget
 
 
 
@@ -29,7 +29,7 @@ def main():
   if not os.path.exists('./data'):
     os.makedirs('./data')
 
-  df = pd.read_csv('../data_preprocess/standardized_data.csv')
+  df = pd.read_csv('../data_preprocess/heart_statlog_cleveland_hungary_final.csv')
   n_total = len(df)
 
   # Train, val and test split follows
