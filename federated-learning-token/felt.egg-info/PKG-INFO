@@ -1,0 +1,36 @@
+Metadata-Version: 2.1
+Name: felt
+Version: 0.1.0
+Summary: FELToken python pockage is intended for running data provider code.
+Home-page: https://feltoken.ai/
+Author: FELToken
+Maintainer: FELToken
+Maintainer-email: info@bretahajek.com
+License: GPL-3.0 License
+Project-URL: Bug Tracker, https://github.com/FELToken/federated-learning-token/issues
+Project-URL: Documentation, https://docs.feltoken.ai/
+Project-URL: Source Code, https://github.com/FELToken/federated-learning-token
+Keywords: Federated Learning,Web3,Machine Learning
+Platform: Windows
+Platform: Linux
+Platform: Solaris
+Platform: Mac OS-X
+Platform: Unix
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Topic :: Scientific/Engineering
+Requires-Python: >=3.8
+License-File: LICENSE
+
+This code connects to the specified smart contract and trains the specified
+models on data.
+
+Entry command:
+
+felt-node-worker --chain <80001> --contract <address> --account main --data <data_path.csv>

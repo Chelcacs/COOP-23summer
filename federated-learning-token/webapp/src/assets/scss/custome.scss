@@ -1,0 +1,69 @@
+// change the theme
+$primary: #7386d5;
+$danger: #ff4136;
+
+// Import Bootstrap and its default variables
+/*@import '~bootstrap/scss/bootstrap.scss'; */
+@import './argon-design-system-react.scss';
+@import './footer.scss';
+@import './application.scss';
+
+.cursor-default {
+  cursor: default !important;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+// Buttons
+.btn-primary {
+  color: white;
+
+  &:hover,
+  &:focus,
+  &:disabled,
+  &.disabled {
+    color: white;
+  }
+}
+
+.btn-outline-primary:hover {
+  color: white;
+}
+
+// Navbar
+.navbar-light {
+  .navbar-brand {
+    &:hover svg,
+    &:focus svg {
+      fill: #7386d5;
+    }
+
+    &:hover,
+    &:focus {
+      color: $primary;
+    }
+
+  }
+
+  .navbar-text a:hover {
+    color: #7386d5;
+
+    & .hover-fill-svg {
+      fill: #7386d5;
+    }
+  }
+}
+
+// Table
+.table {
+  --bs-table-accent-bg: none;
+}
+
+
+// Form: dropdown select
+.form-select option {
+  font-size: 0.9rem;
+  font-family: var(--bs-font-sans-serif);
+}
