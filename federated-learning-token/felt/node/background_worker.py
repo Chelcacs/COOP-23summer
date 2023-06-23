@@ -224,11 +224,11 @@ def task(key, chain_id, contract_address, X, y):
         final_model_path = plan_dir / "final_model.joblib"
         joblib.dump(model, final_model_path)
 
-        # test final model before uploading
-        X_test, y_test = dm.get_test_data()
-        preds = final_model.predict_proba(X_test)
-        test_auc = roc_auc_score(y_score=pred[:1], y_true=y_test)
-        print(f"Test Auc is: {test_auc}")
+        # # test final model before uploading
+        # X_test, y_test = dm.get_test_data()
+        # preds = final_model.predict_proba(X_test)
+        # test_auc = roc_auc_score(y_score=preds[:,1], y_true=y_test)
+        # print(f"Test Auc is: {test_auc}")
 
         # 8. Upload final model if coordinator
         if plan["finalNode"] == account.address:
@@ -250,6 +250,11 @@ def task(key, chain_id, contract_address, X, y):
 
         time.sleep(30)
         print("Plan finished!")
+        # test final model before uploading
+        X_test, y_test = dm.get_test_data()
+        preds = final_model.predict_proba(X_test)
+        test_auc = roc_auc_score(y_score=preds[:,1], y_true=y_test)
+        print(f"Test Auc is: {test_auc}")
 
 
 def parse_args(args_str=None):

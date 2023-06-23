@@ -6,8 +6,8 @@ data_2 = df = pd.read_csv("heart_disease_uci.csv", dtype='str')
 
 
 # data preprocessing for dataset 1
-data_1.insert(11, 'ca', '0')
-data_1.insert(12, 'thal', '0')
+data_1.insert(11, 'ca', 0)
+data_1.insert(12, 'thal', 0)
 
 data_1.rename(columns={'chest pain type':'cp', 'resting bp s':'trestbps',
                        'cholesterol':'chol','fasting blood sugar':'fbs',
@@ -71,6 +71,8 @@ combined_data[columns_to_standardize] = scaler.fit_transform(combined_data[colum
 # df[columns_to_normalize] = normalizer.fit_transform(df[columns_to_normalize])
 
 # Save the standardized and normalized dataset to a CSV file
+combined_data = combined_data.astype(float)
+combined_data = combined_data.astype({'num':'int64'})
 combined_data.to_csv("standardized_data.csv", index=False)
 
 

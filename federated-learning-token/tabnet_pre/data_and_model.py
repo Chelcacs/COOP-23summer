@@ -22,8 +22,7 @@ import torch
 torch.__version__
 
 #dataset loading and spliting
-dataset_name = 'HEART DISEASE DATASET (COMPREHENSIVE)'
-train = pd.read_csv("/Users/a123/Desktop/coop/COOP-23summer/federated-learning-token/tabnet_pre/standardized_data.csv")
+train = pd.read_csv("/Users/a123/Desktop/coop/COOP-23summer/federated-learning-token/tabnet_pre/standardized_data_v1.csv")
 
 target = 'target'
 if "Set" not in train.columns:
