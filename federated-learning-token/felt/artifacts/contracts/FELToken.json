@@ -283,10 +283,10 @@
     }
   ],
   "allSourcePaths": {
-    "1": "/home/breta/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.2/contracts/token/ERC20/ERC20.sol",
-    "2": "/home/breta/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.2/contracts/token/ERC20/IERC20.sol",
-    "3": "/home/breta/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.2/contracts/token/ERC20/extensions/IERC20Metadata.sol",
-    "4": "/home/breta/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.2/contracts/utils/Context.sol",
+    "1": "/Users/a123/Desktop/coop/COOP-23summer/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol",
+    "2": "/Users/a123/Desktop/coop/COOP-23summer/openzeppelin-contracts/contracts/token/ERC20/IERC20.sol",
+    "3": "/Users/a123/Desktop/coop/COOP-23summer/openzeppelin-contracts/contracts/token/ERC20/extensions/IERC20Metadata.sol",
+    "4": "/Users/a123/Desktop/coop/COOP-23summer/openzeppelin-contracts/contracts/utils/Context.sol",
     "7": "contracts/Token.sol"
   },
   "ast": {
@@ -324,7 +324,7 @@
         "src": "33:23:7"
       },
       {
-        "absolutePath": "/home/breta/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.2/contracts/token/ERC20/ERC20.sol",
+        "absolutePath": "/Users/a123/Desktop/coop/COOP-23summer/openzeppelin-contracts/contracts/token/ERC20/ERC20.sol",
         "file": "@openzeppelin/contracts/token/ERC20/ERC20.sol",
         "id": 251,
         "nameLocation": "-1:-1:-1",

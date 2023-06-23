@@ -323,14 +323,14 @@
     }
   ],
   "allSourcePaths": {
-    "0": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/ERC677Token.sol",
-    "1": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20.sol",
-    "2": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC20Basic.sol",
-    "3": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677.sol",
-    "4": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/interfaces/ERC677Receiver.sol",
-    "5": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/vendor/BasicToken.sol",
-    "6": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/vendor/SafeMathChainlink.sol",
-    "7": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/vendor/StandardToken.sol",
+    "0": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/ERC677Token.sol",
+    "1": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/interfaces/ERC20.sol",
+    "2": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/interfaces/ERC20Basic.sol",
+    "3": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/interfaces/ERC677.sol",
+    "4": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/interfaces/ERC677Receiver.sol",
+    "5": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/vendor/BasicToken.sol",
+    "6": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/vendor/SafeMathChainlink.sol",
+    "7": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/vendor/StandardToken.sol",
     "8": "contracts/test/LinkToken.sol"
   },
   "ast": {
@@ -355,7 +355,7 @@
         "src": "32:24:8"
       },
       {
-        "absolutePath": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/ERC677Token.sol",
+        "absolutePath": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/ERC677Token.sol",
         "file": "@chainlink/contracts/src/v0.4/ERC677Token.sol",
         "id": 2,
         "nodeType": "ImportDirective",
@@ -366,7 +366,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.4/vendor/StandardToken.sol",
+        "absolutePath": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.4/vendor/StandardToken.sol",
         "file": "@chainlink/contracts/src/v0.4/vendor/StandardToken.sol",
         "id": 4,
         "nodeType": "ImportDirective",

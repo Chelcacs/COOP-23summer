@@ -6,5 +6,16 @@
     "ProjectManager": [
       "0x826dAF063b0017CBf4c65239d7E215245ad8c504"
     ]
+  },
+  "dev": {
+    "FELToken": [
+      "0xabC82eD2cbFb53dC9843Eb7ad910b629b28e6662"
+    ],
+    "ProjectContract": [
+      "0x3c9838eED3BE6522e211e3Dd4762BAc698f2F929"
+    ],
+    "ProjectManager": [
+      "0x8716fcA450d22A5F89B56543268F8F5448133946"
+    ]
   }
 }

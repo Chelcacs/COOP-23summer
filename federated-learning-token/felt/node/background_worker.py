@@ -10,6 +10,12 @@ import numpy as np
 from brownie import accounts
 from dotenv import load_dotenv
 from sklearn import datasets
+from pytorch_tabnet.tab_model import TabNetClassifier
+from pytorch_tabnet.augmentations import ClassificationSMOTE
+import sys
+sys.path.append(r'/Users/a123/Desktop/coop/COOP-23summer/federated-learning-token/tabnet_pre')
+import data_and_model as dm
+from sklearn.metrics import roc_auc_score
 
 from felt.core.average import average_models
 from felt.core.contracts import to_dict
@@ -108,8 +114,19 @@ def execute_rounds(X, y, model, plan, plan_dir, secret, account, project_contrac
 
         # 2. Execute training
         print("Training")
-        model.fit(X, y)
-
+        # model.fit(X, y) chel
+        X_valid, y_valid = dm.get_val_data()
+        model.fit(
+            X_train=X, y_train=y,
+            eval_set=[(X, y), (X_valid, y_valid)],
+            eval_name=['train', 'valid'],
+            eval_metric=['auc'],
+            batch_size=1024, virtual_batch_size=128,
+            num_workers=0,
+            weights=1,
+            drop_last=False,
+            augmentations=ClassificationSMOTE(p=0.2),
+        )
         # 3. Encrypt the model
         model_path = round_dir / f"node_model.joblib"
         cid = upload_encrypted_model(model, model_path, secret)
@@ -197,6 +214,8 @@ def task(key, chain_id, contract_address, X, y):
         base_model_path = plan_dir / "base_model.joblib"
         ipfs_download_file(plan["baseModelCID"], output_path=base_model_path)
         model = joblib.load(base_model_path)
+        # model = TabNetClassifier()
+        # model.load_model(base_model_path)
 
         final_model = execute_rounds(
             X, y, model, plan, plan_dir, secret, account, project_contract, w3
@@ -204,6 +223,12 @@ def task(key, chain_id, contract_address, X, y):
         print("Creating final model.")
         final_model_path = plan_dir / "final_model.joblib"
         joblib.dump(model, final_model_path)
+
+        # test final model before uploading
+        X_test, y_test = dm.get_test_data()
+        preds = final_model.predict_proba(X_test)
+        test_auc = roc_auc_score(y_score=pred[:1], y_true=y_test)
+        print(f"Test Auc is: {test_auc}")
 
         # 8. Upload final model if coordinator
         if plan["finalNode"] == account.address:
@@ -280,17 +305,20 @@ def main(args_str=None):
         print(f"Invalid parameters:\n{e}")
         return
 
-    if args.data == "test":
-        # Demo data for testing
-        X, y = datasets.load_diabetes(return_X_y=True)
-        subset = np.random.choice(X.shape[0], 100, replace=False)
-        X, y = X[subset], y[subset]
-    else:
-        try:
-            X, y = load_data(args.data)
-        except Exception as e:
-            print(f"Unable to load {args.data}\n{e}")
-            return
+    # chel
+    # if args.data == "test":
+    #     # Demo data for testing
+    #     X, y = datasets.load_diabetes(return_X_y=True)
+    #     subset = np.random.choice(X.shape[0], 100, replace=False)
+    #     X, y = X[subset], y[subset]
+    # else:
+    #     try:
+    #         X, y = load_data(args.data)
+    #     except Exception as e:
+    #         print(f"Unable to load {args.data}\n{e}")
+    #         return 
+
+    X, y = dm.get_train_data()
 
     # Check for valid key and valid web3 token
     if not key:

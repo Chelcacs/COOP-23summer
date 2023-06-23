@@ -1,12 +1,17 @@
 from brownie import FELToken, ProjectContract, accounts, config
 from sklearn.linear_model import LinearRegression
-
+from pytorch_tabnet.tab_model import TabNetClassifier
+import torch
 from felt.builder import upload_model
-
+import sys
+sys.path.append(r'/Users/a123/Desktop/coop/COOP-23summer/federated-learning-token/tabnet_pre')
+import data_and_model as dm
 
 def create_plan(project, builder):
     ## DEFINE MODEL ###
-    model = LinearRegression()
+    # model = LinearRegression() chel
+    # Network parameters
+    model = dm.get_model()
     cid = upload_model(model)
 
     ### PROVIDE REWARDS AND UPLOAD PLAN ###

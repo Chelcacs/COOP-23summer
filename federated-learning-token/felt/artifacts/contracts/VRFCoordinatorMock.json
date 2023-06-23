@@ -97,10 +97,10 @@
     }
   ],
   "allSourcePaths": {
-    "0": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/VRFConsumerBase.sol",
-    "1": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/VRFRequestIDBase.sol",
-    "2": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/interfaces/LinkTokenInterface.sol",
-    "3": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/vendor/SafeMathChainlink.sol",
+    "0": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.6/VRFConsumerBase.sol",
+    "1": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.6/VRFRequestIDBase.sol",
+    "2": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.6/interfaces/LinkTokenInterface.sol",
+    "3": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.6/vendor/SafeMathChainlink.sol",
     "4": "contracts/test/VRFCoordinatorMock.sol"
   },
   "ast": {
@@ -124,7 +124,7 @@
         "src": "32:22:4"
       },
       {
-        "absolutePath": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/interfaces/LinkTokenInterface.sol",
+        "absolutePath": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.6/interfaces/LinkTokenInterface.sol",
         "file": "@chainlink/contracts/src/v0.6/interfaces/LinkTokenInterface.sol",
         "id": 2,
         "nodeType": "ImportDirective",
@@ -135,7 +135,7 @@
         "unitAlias": ""
       },
       {
-        "absolutePath": "/home/breta/.brownie/packages/smartcontractkit/chainlink-brownie-contracts@0.2.2/contracts/src/v0.6/VRFConsumerBase.sol",
+        "absolutePath": "/Users/a123/Desktop/coop/COOP-23summer/chainlink-brownie-contracts/contracts/src/v0.6/VRFConsumerBase.sol",
         "file": "@chainlink/contracts/src/v0.6/VRFConsumerBase.sol",
         "id": 3,
         "nodeType": "ImportDirective",

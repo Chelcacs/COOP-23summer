@@ -172,8 +172,8 @@
     }
   ],
   "allSourcePaths": {
-    "0": "/home/breta/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.2/contracts/access/Ownable.sol",
-    "4": "/home/breta/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.2/contracts/utils/Context.sol",
+    "0": "/Users/a123/Desktop/coop/COOP-23summer/openzeppelin-contracts/contracts/access/Ownable.sol",
+    "4": "/Users/a123/Desktop/coop/COOP-23summer/openzeppelin-contracts/contracts/utils/Context.sol",
     "6": "contracts/ProjectManager.sol",
     "7": "contracts/Token.sol"
   },
@@ -218,7 +218,7 @@
         "src": "33:23:6"
       },
       {
-        "absolutePath": "/home/breta/.brownie/packages/OpenZeppelin/openzeppelin-contracts@4.4.2/contracts/access/Ownable.sol",
+        "absolutePath": "/Users/a123/Desktop/coop/COOP-23summer/openzeppelin-contracts/contracts/access/Ownable.sol",
         "file": "@openzeppelin/contracts/access/Ownable.sol",
         "id": 142,
         "nameLocation": "-1:-1:-1",

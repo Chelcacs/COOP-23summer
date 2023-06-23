@@ -1,0 +1,21 @@
+{
+  "80001": {
+    "FELToken": [
+      "0xbD5EF22DEd36B67F9f8404e197DC61105F03138F"
+    ],
+    "ProjectManager": [
+      "0x826dAF063b0017CBf4c65239d7E215245ad8c504"
+    ]
+  },
+  "dev": {
+    "FELToken": [
+      "0xb83124910ab6917cacB06f4454B89bcBbC1b4410"
+    ],
+    "ProjectContract": [
+      "0xE63172B65891367ba69D1B94C419F6458C304Df6"
+    ],
+    "ProjectManager": [
+      "0x41879c947A82E554C34a10B20C156973C25047Bc"
+    ]
+  }
+}
