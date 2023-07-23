@@ -4,6 +4,8 @@ import torch
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import roc_auc_score
 
+from torch.utils.data import DataLoader
+from torch.utils.data import TensorDataset
 import pandas as pd
 import numpy as np
 np.random.seed(0)
@@ -61,11 +63,14 @@ cat_idxs = [ i for i, f in enumerate(features) if f in categorical_columns]
 cat_dims = [ categorical_dims[f] for i, f in enumerate(features) if f in categorical_columns]
 
 
+#define optimizer
+optimizer = torch.optim.Adam
+
 # Network parameters
 tabnet_params = {"cat_idxs":cat_idxs,
                  "cat_dims":cat_dims,
                  "cat_emb_dim":2,
-                 "optimizer_fn":torch.optim.Adam,
+                 "optimizer_fn":optimizer,
                  "optimizer_params":dict(lr=2e-2),
                  "scheduler_params":{"step_size":50, # how to use learning rate scheduler
                                  "gamma":0.9},

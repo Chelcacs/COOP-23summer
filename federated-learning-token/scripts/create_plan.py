@@ -5,7 +5,9 @@ import torch
 from felt.builder import upload_model
 import sys
 sys.path.append(r'/Users/a123/Desktop/coop/COOP-23summer/federated-learning-token/tabnet_pre')
-import data_and_model as dm
+# import data_and_model as dm
+import CusModel as dm
+
 
 def create_plan(project, builder):
     ## DEFINE MODEL ###

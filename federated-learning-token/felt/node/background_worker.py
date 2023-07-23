@@ -6,15 +6,19 @@ from io import BytesIO
 from pathlib import Path
 
 import joblib
+from opacus import PrivacyEngine
 import numpy as np
 from brownie import accounts
 from dotenv import load_dotenv
+import torch.nn as nn
+import torch
 from sklearn import datasets
 from pytorch_tabnet.tab_model import TabNetClassifier
 from pytorch_tabnet.augmentations import ClassificationSMOTE
 import sys
 sys.path.append(r'/Users/a123/Desktop/coop/COOP-23summer/federated-learning-token/tabnet_pre')
-import data_and_model as dm
+# import data_and_model as dm
+import CusModel as dm
 from sklearn.metrics import roc_auc_score
 
 from felt.core.average import average_models
@@ -97,7 +101,7 @@ def upload_encrypted_model(model, model_path, secret):
     return res.json()["cid"]
 
 
-def execute_rounds(X, y, model, plan, plan_dir, secret, account, project_contract, w3):
+def execute_rounds(model, plan, plan_dir, secret, account, project_contract, w3):
     """Perform training rounds according to the training plan.
 
     Args:
@@ -114,19 +118,23 @@ def execute_rounds(X, y, model, plan, plan_dir, secret, account, project_contrac
 
         # 2. Execute training
         print("Training")
-        # model.fit(X, y) chel
-        X_valid, y_valid = dm.get_val_data()
-        model.fit(
-            X_train=X, y_train=y,
-            eval_set=[(X, y), (X_valid, y_valid)],
-            eval_name=['train', 'valid'],
-            eval_metric=['auc'],
-            batch_size=1024, virtual_batch_size=128,
-            num_workers=0,
-            weights=1,
-            drop_last=False,
-            augmentations=ClassificationSMOTE(p=0.2),
-        )
+        # # # model.fit(X, y) chelfor epoch in range(1, 50):
+        # X_valid, y_valid = dm.get_val_data()
+        # model.fit(
+        #     X_train=X, y_train=y,
+        #     eval_set=[(X, y), (X_valid, y_valid)],
+        #     eval_name=['train', 'valid'],
+        #     eval_metric=['auc'],
+        #     batch_size=1024, virtual_batch_size=128,
+        #     num_workers=0,
+        #     weights=1,
+        #     drop_last=False,
+        #     augmentations=ClassificationSMOTE(p=0.2),
+        # ) chel
+
+        model, optimizer, train_dataloader, test_dataloader = dm.pre()
+        dm.train(model, train_dataloader, optimizer)
+
         # 3. Encrypt the model
         model_path = round_dir / f"node_model.joblib"
         cid = upload_encrypted_model(model, model_path, secret)
@@ -182,7 +190,7 @@ def watch_for_plan(project_contract):
         time.sleep(3)
 
 
-def task(key, chain_id, contract_address, X, y):
+def task(key, chain_id, contract_address):
     account = accounts.add(key)
     w3 = get_web3(account, chain_id)
     print("Worker connected to chain id: ", w3.eth.chain_id)
@@ -218,17 +226,18 @@ def task(key, chain_id, contract_address, X, y):
         # model.load_model(base_model_path)
 
         final_model = execute_rounds(
-            X, y, model, plan, plan_dir, secret, account, project_contract, w3
+            model, plan, plan_dir, secret, account, project_contract, w3
         )
         print("Creating final model.")
         final_model_path = plan_dir / "final_model.joblib"
         joblib.dump(model, final_model_path)
 
-        # # test final model before uploading
+        # # test final model before uploading chel
         # X_test, y_test = dm.get_test_data()
         # preds = final_model.predict_proba(X_test)
         # test_auc = roc_auc_score(y_score=preds[:,1], y_true=y_test)
         # print(f"Test Auc is: {test_auc}")
+        
 
         # 8. Upload final model if coordinator
         if plan["finalNode"] == account.address:
@@ -250,11 +259,11 @@ def task(key, chain_id, contract_address, X, y):
 
         time.sleep(30)
         print("Plan finished!")
-        # test final model before uploading
-        X_test, y_test = dm.get_test_data()
-        preds = final_model.predict_proba(X_test)
-        test_auc = roc_auc_score(y_score=preds[:,1], y_true=y_test)
-        print(f"Test Auc is: {test_auc}")
+        # # test final model before uploading
+        # X_test, y_test = dm.get_test_data()
+        # preds = final_model.predict_proba(X_test)
+        # test_auc = roc_auc_score(y_score=preds[:,1], y_true=y_test)
+        # print(f"Test Auc is: {test_auc}")
 
 
 def parse_args(args_str=None):
@@ -323,7 +332,8 @@ def main(args_str=None):
     #         print(f"Unable to load {args.data}\n{e}")
     #         return 
 
-    X, y = dm.get_train_data()
+    # X, y = dm.get_train_data() chel
+    # train_dataloader = dm.get_train_dataloader()
 
     # Check for valid key and valid web3 token
     if not key:
@@ -334,7 +344,7 @@ def main(args_str=None):
             "Please input your web3.storage API token:"
         )
 
-    task(key, args.chain, args.contract, X, y)
+    task(key, args.chain, args.contract)
 
 
 if __name__ == "__main__":
