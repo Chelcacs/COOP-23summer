@@ -46,8 +46,6 @@ data.loc[280:]
 data = data.dropna(axis=0)
 
 
-# In[4]:
-
 
 y = (data['target'])
 X = data.drop(['target'],axis=1)
@@ -57,13 +55,10 @@ scaler = StandardScaler()
 X = scaler.fit_transform(X)
 
 
-# In[5]:
-
 
 X_train,X_test,y_train,y_test=train_test_split(X,y,test_size=.20,random_state=5)
 
 
-# In[6]:
 
 
 def df_to_tensor(df):
@@ -81,7 +76,6 @@ y_testt = df_to_tensor(y_test)
 X_traint
 
 
-# In[8]:
 
 
 from torch.utils.data import DataLoader

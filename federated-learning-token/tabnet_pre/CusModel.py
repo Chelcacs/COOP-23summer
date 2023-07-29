@@ -15,11 +15,12 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score, confusion_matrix, classification_report
 from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
 
 class HeartDiseaseModel(nn.Module):
     def __init__(self,):
         super(HeartDiseaseModel, self).__init__()
-        self.fc1 = nn.Linear(11, 128)
+        self.fc1 = nn.Linear(13, 128)
         self.relu1 = nn.ReLU()
         self.fc2 = nn.Linear(128, 64)
         self.relu2 = nn.ReLU()
@@ -42,10 +43,10 @@ class HeartDiseaseModel(nn.Module):
         return x
 
 
-def pre():
+def pre(privacy_engine):
     model = HeartDiseaseModel()
 
-    cleveland = pd.read_csv('/Users/a123/Desktop/coop/COOP-23summer/federated-learning-token/tabnet_pre/standardized_data_v1.csv')
+    cleveland = pd.read_csv('/Users/a123/Desktop/coop/COOP-23summer/federated-learning-token/tabnet_pre/standardized_data.csv')
     print('Shape of DataFrame: {}'.format(cleveland.shape))
     print(cleveland.loc[1])
 
@@ -82,11 +83,11 @@ def pre():
     train_dataloader = DataLoader(train_ds, batch_size=batch_size, shuffle=True)
     test_dataloader = DataLoader(test_ds, batch_size=batch_size, shuffle=True)
 
-    privacy_engine = PrivacyEngine()
+    # privacy_engine = PrivacyEngine()
     loss_fn = nn.BCELoss() # Binary Cross Entropy
     optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
-    model, optimizer, train_dataloader = privacy_engine.make_private(module=model,optimizer=optimizer,data_loader=train_dataloader,
-                                                                noise_multiplier=1.0,   max_grad_norm=1.0, )
+    model, optimizer, train_dataloader = privacy_engine.make_private_with_epsilon(module=model,optimizer=optimizer,data_loader=train_dataloader,target_epsilon=10
+                                                                ,epochs=100, max_grad_norm=1.0, target_delta= 1e-7)
     return model, optimizer, train_dataloader, test_dataloader
 
 def get_model():
@@ -101,10 +102,12 @@ def get_model():
 
 
 
-def train(model, train_dataloader, optimizer):
+def train(model, train_dataloader, optimizer, privacy_engine):
     loss_fn = nn.BCELoss() # Binary Cross Entropy
     model.train()
-    for epoch in range(1, 50):
+    accuracy_values = []
+    epsilon_values = []
+    for epoch in range(0, 100):
         losses = []
         predictions = []
         targets = []
@@ -121,7 +124,23 @@ def train(model, train_dataloader, optimizer):
             optimizer.step()
             losses.append(loss.item())
         acc = accuracy_score(targets, predictions)
+        accuracy_values.append(acc)
         print('Epoch: {}, Avg. Loss: {:.4f}, Acc: {:.4f}'.format(epoch, np.mean(losses), acc))
+        delta = 1e-7
+        epsilon = float(privacy_engine.get_epsilon(delta))
+        epsilon_values.append(epsilon)
+    x = np.arange(0,100)
+    y1 = accuracy_values
+    y2 = epsilon_values
+    fig, ax1 = plt.subplots()
+    ax2 = ax1.twinx()
+    ax1.plot(x, y1, 'g-')
+    ax2.plot(x, y2, 'b--')
+    ax1.set_xlabel('Epoch')
+    ax1.set_ylabel('Accuracy', color='g')
+    ax2.set_ylabel('Epsilon', color='b')
+    plt.show()
+    return epsilon_values
 
 def test(model, test_dataloader):
     model.eval()
